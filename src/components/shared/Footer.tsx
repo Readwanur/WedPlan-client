@@ -100,7 +100,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/sign-in"
+                  href="/signIn"
                   className="text-[#5C5046] hover:text-[#3A3029] transition-colors duration-150"
                 >
                   Sign in
@@ -157,13 +157,13 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-6">
             <Link
-              href="/sign-in"
+              href="/signIn"
               className="hover:text-[#3A3029] transition-colors duration-150"
             >
               Vendor portal
             </Link>
             <Link
-              href="/sign-up"
+              href="/signUp"
               className="hover:text-[#3A3029] transition-colors duration-150"
             >
               Create account

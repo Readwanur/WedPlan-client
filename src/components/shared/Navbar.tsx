@@ -53,14 +53,14 @@ const Navbar = () => {
         {/* Desktop Auth: Quiet Sign in link + one button */}
         <div className="hidden md:flex items-center gap-4">
           <Link
-            href="/sign-in"
+            href="/signIn"
             className="h-9 px-2 inline-flex items-center text-sm font-medium text-[#5C5046] hover:text-[#3A3029] transition-colors duration-150"
           >
             Sign in
           </Link>
           <Button
             nativeButton={false}
-            render={<Link href="/sign-up" />}
+            render={<Link href="/signUp" />}
             className="btn-primary h-9 rounded-lg px-4 text-sm font-medium"
           >
             Sign up
@@ -99,7 +99,7 @@ const Navbar = () => {
           </nav>
           <div className="pt-3 border-t border-[#3A3029]/10 flex items-center justify-between gap-4">
             <Link
-              href="/sign-in"
+              href="/signIn"
               onClick={() => setMobileMenuOpen(false)}
               className="h-9 px-3 inline-flex items-center text-sm font-medium text-[#5C5046] hover:text-[#3A3029]"
             >
@@ -109,7 +109,7 @@ const Navbar = () => {
               nativeButton={false}
               render={
                 <Link
-                  href="/sign-up"
+                  href="/signUp"
                   onClick={() => setMobileMenuOpen(false)}
                 />
               }
