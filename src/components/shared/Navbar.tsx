@@ -7,10 +7,8 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { name: "Services", href: "#featured-services" },
-  { name: "Categories", href: "#service-categories" },
-  { name: "Why WedPlan", href: "#why-wedplan" },
-  { name: "Testimonials", href: "#testimonials" },
+  { name: "Home", href: "/" },
+  { name: "Browse Services", href: "/services" },
 ];
 
 const Navbar = () => {
@@ -40,13 +38,13 @@ const Navbar = () => {
           className="hidden md:flex items-center gap-1"
         >
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
               className="h-9 px-3 inline-flex items-center rounded-lg text-sm font-normal text-[#5C5046] hover:text-[#3A3029] hover:bg-[#F4E7D8]/60 transition-colors duration-150 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -87,14 +85,14 @@ const Navbar = () => {
         <div className="md:hidden bg-[#F4E7D8] border-b border-[#3A3029]/10 px-6 py-4 space-y-3">
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className="h-9 px-3 inline-flex items-center rounded-lg text-sm font-normal text-[#3A3029] hover:bg-[#EBE0D0] transition-colors duration-150"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="pt-3 border-t border-[#3A3029]/10 flex items-center justify-between gap-4">

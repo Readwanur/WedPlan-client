@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Playfair_Display } from "next/font/google";
 import "../globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toast";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -42,7 +43,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       )}
     >
       <body className="min-h-full flex flex-col bg-[#E5E8CF] text-[#3A3029] selection:bg-[#C76B78] selection:text-white">
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <Toaster/>
+          {children}
+          </main>
       </body>
     </html>
   );

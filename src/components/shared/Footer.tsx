@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
 
 const footerCategories = [
   "Photography & Videography",
@@ -12,6 +11,87 @@ const footerCategories = [
   "Catering Services",
   "Makeup & Styling",
   "Wedding Fashion",
+];
+
+const socialLinks = [
+  {
+    name: "Instagram",
+    href: "https://instagram.com",
+    icon: (
+      <svg
+        className="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <defs>
+          <radialGradient
+            id="igGrad"
+            cx="0.2"
+            cy="1"
+            r="1"
+            gradientTransform="matrix(0 -1.6 1.6 0 -.2 1)"
+          >
+            <stop offset="0%" stopColor="#FFD521" />
+            <stop offset="10%" stopColor="#F50000" />
+            <stop offset="50%" stopColor="#B900B4" />
+            <stop offset="100%" stopColor="#4000C8" />
+          </radialGradient>
+        </defs>
+        <rect
+          x="2"
+          y="2"
+          width="20"
+          height="20"
+          rx="5.5"
+          fill="url(#igGrad)"
+        />
+        <circle cx="12" cy="12" r="4.2" stroke="#FFFFFF" strokeWidth="1.8" />
+        <circle cx="17.2" cy="6.8" r="1.1" fill="#FFFFFF" />
+      </svg>
+    ),
+  },
+  {
+    name: "Facebook",
+    href: "https://facebook.com",
+    icon: (
+      <svg
+        className="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10" fill="#1877F2" />
+        <path
+          d="M13.5 12.5h2l.3-2.5h-2.3V8.5c0-.7.2-1.2 1.2-1.2h1.2V5.1c-.2 0-1-.1-1.9-.1-1.9 0-3.2 1.2-3.2 3.3V10H8.8v2.5h2V18.5h2.7v-6z"
+          fill="#FFFFFF"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: "Pinterest",
+    href: "https://pinterest.com",
+    icon: (
+      <svg
+        className="w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10" fill="#E60023" />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12 5.5c-3.6 0-6.5 2.6-6.5 6 0 1.9 1 3.5 2.5 4.3.2.1.4 0 .4-.2.1-.3.2-1 .3-1.3 0-.2 0-.2-.2-.4-.6-.7-.9-1.6-.9-2.6 0-2.3 1.8-4.3 4.6-4.3 2.5 0 3.9 1.5 3.9 3.6 0 2.7-1.2 5-3 5-.9 0-1.7-.8-1.5-1.7.3-1.1.8-2.3.8-3.1 0-.7-.4-1.3-1.2-1.3-.9 0-1.7 1-1.7 2.3 0 .8.3 1.4.3 1.4s-1 4.2-1.2 5c-.3 1.3-.1 3-.1 3.1 0 .1.1.2.2.1.2-.2 2.1-2.6 2.4-3.8l.6-2.5c.3.6 1.3 1.1 2.3 1.1 3 0 5.1-2.8 5.1-6.5 0-2.8-2.4-5.5-6.2-5.5z"
+          fill="#FFFFFF"
+        />
+      </svg>
+    ),
+  },
 ];
 
 const Footer = () => {
@@ -39,6 +119,22 @@ const Footer = () => {
               photographers, decorators, caterers, makeup artists, and bridal
               couturiers in Bangladesh.
             </p>
+
+            {/* Social Links: Instagram, Facebook, Pinterest */}
+            <div className="flex items-center gap-2 pt-1">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  className="surface-card h-9 w-9 rounded-lg inline-flex items-center justify-center text-[#5C5046] hover:text-[#3A3029] hover:bg-[#EBE0D0] transition-colors duration-150"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Column 2: Service Categories */}
@@ -111,9 +207,7 @@ const Footer = () => {
 
           {/* Column 4: Contact */}
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-medium text-[#3A3029] mb-3">
-              Contact
-            </h4>
+            <h4 className="text-sm font-medium text-[#3A3029] mb-3">Contact</h4>
             <div className="space-y-2 text-sm text-[#5C5046]">
               <div className="flex items-start gap-2">
                 <MapPin
@@ -140,10 +234,10 @@ const Footer = () => {
                   strokeWidth={1.5}
                 />
                 <a
-                  href="mailto:wedding@wedplan.com"
+                  href="mailto:rrumon710@gmail.com"
                   className="hover:text-[#3A3029] transition-colors duration-150"
                 >
-                  wedding@wedplan.com
+                  rrumon710@gmail.com
                 </a>
               </div>
             </div>
@@ -152,23 +246,8 @@ const Footer = () => {
 
         {/* Bottom Copyright Bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#7A6E63]">
-          <p className="tabular-nums">
-            © {new Date().getFullYear()} WedPlan
-          </p>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/signIn"
-              className="hover:text-[#3A3029] transition-colors duration-150"
-            >
-              Vendor portal
-            </Link>
-            <Link
-              href="/signUp"
-              className="hover:text-[#3A3029] transition-colors duration-150"
-            >
-              Create account
-            </Link>
-          </div>
+          <p className="tabular-nums">© {new Date().getFullYear()} WedPlan</p>
+          <p>Crafted for couples & verified wedding artisans worldwide.</p>
         </div>
       </div>
     </footer>

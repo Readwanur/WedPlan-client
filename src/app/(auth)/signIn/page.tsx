@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Eye, EyeOff } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function SignInPage() {
@@ -32,8 +32,19 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#E5E8CF] text-[#3A3029] flex flex-col items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-[#E5E8CF] text-[#3A3029] flex flex-col items-center justify-center px-4 py-12 relative">
       <div className="w-full max-w-sm space-y-6">
+        {/* Top Back to Home Button */}
+        <div className="flex items-center justify-between">
+          <Link
+            href="/"
+            className="h-9 px-3 inline-flex items-center gap-2 rounded-lg text-xs font-medium text-[#5C5046] hover:text-[#3A3029] hover:bg-[#F4E7D8]/60 transition-colors duration-150"
+          >
+            <ArrowLeft className="w-4 h-4 text-[#7A6E63]" strokeWidth={1.5} />
+            <span>Home</span>
+          </Link>
+        </div>
+
         {/* Logo */}
         <div className="flex justify-center">
           <Link href="/" className="inline-flex items-center">
