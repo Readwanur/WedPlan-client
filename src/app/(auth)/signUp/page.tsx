@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toast";
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import { ArrowLeft, Camera, Eye, EyeOff, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -75,9 +75,19 @@ export default function SignUpPage() {
   };
 
   const handleGoogleSignUp = async () => {
-    // Ready for better-auth social provider:
-    // await signIn.social({ provider: "google", callbackURL: "/" });
-    console.log("Google sign-up");
+    try {
+      await signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch (err: unknown) {
+      toast.add({
+        title: "Sign up failed",
+        description:
+          err instanceof Error ? err.message : "Failed to sign up with Google",
+        type: "error",
+      });
+    }
   };
 
   return (

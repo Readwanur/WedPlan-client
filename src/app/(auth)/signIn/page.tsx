@@ -1,16 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+import { signIn } from "@/lib/auth-client";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Eye, EyeOff } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,6 +23,28 @@ export default function SignInPage() {
     try {
       // Ready for better-auth integration:
       // await signIn.email({ email, password });
+      const { data, error } = await signIn.email({
+        email: email, // required, The email address of the user.
+        password: password, // required, The password of the user. It should be at least 8 characters long and max 128 by default.
+        rememberMe: false, // If false, the user will be signed out when the browser is closed. (optional) (default: true)
+      });
+      if (error) {
+        toast.add({
+          title: `SignIn failed`,
+          description: `${error.message}`,
+          type: "error",
+        });
+        return;
+      }
+      console.log(data, error);
+      if (data?.user) {
+        toast.add({
+          title: `Welcome back, ${data.user.name}!`,
+          description: "Signed in successfullly.",
+          type: "success",
+        });
+        router.push("/");
+      }
       console.log("Sign in:", { email, password });
     } finally {
       setIsSubmitting(false);
@@ -26,9 +52,19 @@ export default function SignInPage() {
   };
 
   const handleGoogleSignIn = async () => {
-    // Ready for better-auth social provider:
-    // await signIn.social({ provider: "google", callbackURL: "/" });
-    console.log("Google sign-in");
+    try {
+      await signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch (err: unknown) {
+      toast.add({
+        title: "Sign in failed",
+        description:
+          err instanceof Error ? err.message : "Failed to sign in with Google",
+        type: "error",
+      });
+    }
   };
 
   return (
